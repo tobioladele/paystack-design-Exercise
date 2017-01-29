@@ -1,0 +1,303 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: helvetica;
+}
+body {
+	background-color: #c5c5c5;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Media queries ----------- */
+
+$breakpoint-small: 600px;
+$breakpoint-med-small: 750px;
+$breakpoint-med: 980px;
+
+@mixin screen($size, $type: max, $pixels: 600) {
+    @if $size=='tiny' {
+        @media screen and (max-width: 400px) {
+            @content;
+        }
+    }
+    @if $size=='small' {
+        @media screen and (max-width: $breakpoint-small) {
+            @content;
+        }
+    }
+    @if $size=='med-small' {
+        @media screen and (max-width: $breakpoint-med-small) {
+            @content;
+        }
+    }
+    @else if $size=='med' {
+        @media screen and (max-width: $breakpoint-med) {
+            @content;
+        }
+    }
+    @else if $size=='mid' {
+        @media screen and (min-width: $breakpoint-med-small) and (max-width: $breakpoint-med) {
+            @content;
+        }
+    }
+    @else if $size=='large' {
+        @media screen and (min-width: $breakpoint-med) {
+            @content;
+        }
+    }
+    @else if $size=='custom' {
+        @media screen and ($type + -width: $pixels + px) {
+            @content;
+        }
+    }
+}
+
+.payment-card {
+	width: 20%;
+	height: 400px;
+	background-color: white;
+	border-radius: 4px;
+	margin: 100px auto 0;
+	box-shadow: 0 20px 20px rgba(0,0,0,.08);
+	font-size: 16px;
+	position: relative;
+	@include screen(small) {
+    	width: 90%;
+    }
+	.merchant-logo {
+		padding: 15px 20px;
+    	text-align: center;
+    	background-color: white;
+    	border-radius: 4px;
+    	.logo {
+    		height: 40px;
+    		img {
+    			max-width: 70%;
+    			max-height: 40px;
+    		}
+    	}
+	}
+	.user-info {
+		font-size: 14px;
+	    color: #777;
+	    padding: 0 0 15px;
+	    display: block;
+	    width: 100%;
+	    clear: both;
+	    position: relative;
+	    background-color: white;
+	    color: #777;
+	    text-align: center;
+	    div {
+	    	text-align: center;
+		    margin-bottom: 0;
+		    white-space: nowrap;
+		    overflow: hidden;
+		    text-overflow: ellipsis;
+		    line-height: 1.4em;
+	    }
+	    .price {
+	    	color: #44b669;
+	    	font-weight: 700;
+	    }
+	}
+	.switcher {
+		width: 100%;
+		float: left;
+		background-color: white;
+		a {
+			position: relative;
+		    display: inline-block;
+		    float: left;
+		    padding: 1em 0;
+		    border: 1px solid;
+		    border-bottom: 0;
+		    border-width: 1px 0;
+		    margin: 0;
+		    text-decoration: none;
+		    text-align: center;
+		    font-size: 11px;
+		    white-space: nowrap;
+		    cursor: pointer;
+		    outline: 0;
+		    width: 50%;
+		    text-transform: uppercase;
+		    font-weight: 700;
+		    border-color: #d4d4d4;
+		    text-shadow: none;
+		    color: #777;
+		    background-color: #fff;
+		    box-shadow: none;
+		    &:hover {
+		    	background-color: #f5f5f5;
+		    }
+		    &.active {
+		    	background-color: #f5f5f5;
+		    }
+		}
+	}
+	.paymentform {
+	    background: #f5f5f5;
+	    position: relative;
+	    z-index: 2;
+	    clear: both;
+	    border-radius: 0 0 3px 3px;
+	    padding-top: 20px;
+	    float: left;
+	    display: none;
+	    form {
+	    	padding: 20px 15px 15px;
+	    }
+	}
+	.success-card {
+		width: 100%;
+		height: 280px;
+		background: #f5f5f5;
+		position: absolute;
+		z-index: 3;
+		bottom: 0;
+		left: 0;
+		border-top: solid 1px #f5f5f5;
+		text-align: center;
+		display: none;
+		img {
+			width: 50%;
+			margin-top: 20px;
+		}
+		h2 {
+			color: #44B669;
+			margin-top: 20px;
+			font-weight: 500;
+			width: 50%;
+			margin: 0 auto;
+		}
+	}
+}
+.form-group {
+	width: 100%;
+	position: relative;
+	margin-bottom: 40px;
+	float: left;
+	.form-control {
+		width: 100%;
+		height: 50px;
+	    padding: 0;
+	    display: block;
+	    position: relative;
+	    text-indent: 15px;
+	    border-color: none;
+	    box-shadow: none;
+	    background: #fff;
+	    border-width: 1px;
+	    border: 0;
+	    border-radius: 2px;
+	    -webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    font-size: 14px;
+	    outline: none;
+	}
+	label {
+		width: 100%;
+		max-width: 100%;
+		position: absolute;
+	    left: 0;
+	    right: 0;
+	    top: -16px;
+	    z-index: 2;
+	    background: none;
+	    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	    font-size: 9px;
+	    font-weight: 700;
+	    color: #011B33;
+	    letter-spacing: .5px;
+	    // padding: 5px 10px 0 15px;
+	    text-transform: uppercase;
+	    display: inline-block;
+	}
+}
+
+.row {
+	margin-right: -15px;
+    margin-left: -15px;
+}
+.col-6 {
+	width: 40%;
+	position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+	float: left;
+	&:nth-child(1) {
+		padding-right: 0;
+	}
+	&:nth-child(2) {
+		padding-left: 27px;
+	}
+}
+
+button {
+	width: 100%;
+	font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+    background: #44b669;
+    border: 1px solid #49A861;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+    outline: 0;
+    color: #fff;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.m-sm {
+	margin-bottom: 20px;
+}
+.m-n {
+	margin-bottom: 0;
+}
+
+//animation
+
+.animated {
+	-webkit-animation-duration: .3s;
+  	animation-duration: .3s;
+  	-webkit-animation-fill-mode: both;
+  	animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInUp {
+	0% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(0, 20px, 0);
+  		transform: translate3d(0, 20px, 0);
+  	}
+
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+  		opacity: 0;
+  		-webkit-transform: translate3d(0, 20px, 0);
+  		transform: translate3d(0, 20px, 0);
+  	}
+
+  	100% {
+  		opacity: 1;
+  		-webkit-transform: none;
+  		transform: none;
+  	}
+}
+
+.fadeInUp {
+  	-webkit-animation-name: fadeInUp;
+  	animation-name: fadeInUp;
+}

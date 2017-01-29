@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paystack payment form</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="style/main.css">
+</head>
+
+<body>
+ 	<div class="payment-card">
+ 		<div class="merchant-logo">
+ 			<div class="logo">
+ 				<img src="https://pstk-integration-logos.s3-eu-west-1.amazonaws.com/4ead01da-49d8-492b-b173-8faed9d6d4f2.png">
+ 			</div>
+ 		</div>
+ 		<div class="user-info">
+ 			<div>
+ 				me@tobioladele.com
+ 			</div>
+ 			<div class="price">
+ 				&#x20A6 200,000
+ 			</div>
+ 		</div>
+ 		<div class="switcher">
+ 			<a href="javascript:void(0)" onclick="openTab(event, 'card')" id="defaultOpen" class="tablinks">Pay with card</a>
+ 			<a href="javascript:void(0)" onclick="openTab(event, 'bank')" class="tablinks">Pay with bank</a>
+ 		</div>
+ 		<div class="paymentform" id="card">
+ 			<form method="#">
+ 				<div class="form-group">
+ 					<input class="form-control" type="tel" placeholder="0000 0000 0000" id="number">
+ 					<label class="floating-label" for="number">Card Number</label>
+ 				</div>
+ 				<div class="row">
+ 					<div class="col-6">
+ 						<div class="form-group m-sm">
+	 						<input class="form-control" type="tel" placeholder="MM/YY" id="expiry">
+	 						<label class="floating-label" for="expiry">Valid till</label>
+	 					</div>
+ 					</div>
+ 					<div class="col-6">
+ 						<div class="form-group m-sm">
+	 						<input class="form-control" type="tel" placeholder="123" id="cvv">
+	 						<label class="floating-label" for="cvv">Cvv</label>
+	 					</div>
+ 					</div>
+ 				</div>
+ 				<div class="form-group m-sm">
+ 					<button type="button" onclick="pay()">Pay &#x20A6 200,000</button>
+ 				</div>
+ 			</form>
+ 		</div>
+ 		<div class="paymentform" id="bank">
+ 			<form method="#">
+ 				<div class="form-group">
+ 					<input class="form-control" type="tel" placeholder="0000000000" id="number">
+ 					<label class="floating-label" for="number">Account number</label>
+ 				</div>
+ 				<div class="form-group">
+ 					<select class="form-control" id="bank">
+ 						<option>First bank</option>
+ 						<option>Guarantee trust bank</option>
+ 						<option>Heritage bank</option>
+ 					</select>
+ 					<label class="floating-label" for="bank">Choose your bank</label>
+ 				</div>
+
+ 				<div class="form-group m-sm">
+ 					<button type="button" onclick="pay()">Pay &#x20A6 200,000</button>
+ 				</div>
+ 			</form>
+ 		</div>
+ 		<div class="success-card animated fadeInUp" id="success-card">
+ 			<img src="https://paystack.com/assets/payment/img/success.png">
+ 			<h2>Payment successful</h2>
+ 		</div>
+ 	</div>
+</body>
+<script>
+	function pay() {
+	   document.getElementById('success-card').style.display = "block";
+	}
+</script>
+<script>
+function openTab(evt, cityName) {
+    var i, paymentform, tablinks;
+    paymentform = document.getElementsByClassName("paymentform");
+    for (i = 0; i < paymentform.length; i++) {
+        paymentform[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+</html>
